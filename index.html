@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="./img/pokeball_icon.svg" />
+    <title>Pokedex II</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="./templates.js"></script>
+</head>
+
+<body onload="init()">
+
+    <div id="loading-screen" class="loading-screen"><img class="loader" src="./img/loading_pokeball.svg">
+        <p>Loading...</p>
+    </div>
+    <nav class="navbar logo-container">
+        <div class="container">
+            <a href="/">
+                <img class="logo" src="./img/International_Pokémon_logo.svg" width="30" height="24">
+            </a>
+            <input type="text" id="searchBar" placeholder="Search Pokémon..." class="search-bar" minlength="3">
+        </div>
+    </nav>
+
+    <div id="content">
+        <div id="pokemon-container"></div>
+        <div id="button-container" class="button-container">
+            <button class="loadMore" onclick="loadMorePokemon()" id="loadMore">Load More Pokemon</button>
+        </div>
+    </div>
+    </div>
+    <div class="backdrop  d-none" id="backdrop" onclick="closeDialog()"></div>
+    <div class="dialogBox" id="dialogBox">
+        
+    </div>
+
+    <script src="./main.js"></script>
+
+</body>
+
+
+</html>
+
+
+
+
