@@ -6,6 +6,7 @@ body {
     min-height: 100vh;
     scroll-behavior: smooth;
 }
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -77,6 +78,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
     width: 80%;
 }
 
@@ -113,6 +115,13 @@ body {
 }
 
 /*:::::::::  content :::::::::*/
+#content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
 #pokemon-container {
     display: flex;
     flex-wrap: wrap;
@@ -125,7 +134,7 @@ body {
     position: relative;
     width: 240px;
     height: 350px;
-    border-radius: 8px;
+    border-radius: 12px;
     padding: 10px;
     display: flex;
     flex-direction: column;
@@ -133,6 +142,19 @@ body {
     cursor: pointer;
     overflow: hidden;
     z-index: 1;
+    
+}
+.pokemon-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 8px;
+    background-color: inherit;
+    filter: brightness(1.6) saturate(0.5);
+    z-index: 0;
 }
 
 .pokemon-card * {
@@ -200,7 +222,9 @@ body {
 .type {
     border-radius: 4px;
     padding: 1px 8px 4px 8px;
+    margin-top: 4px;
 }
+
 
 
 /*:::::::::   dialog   :::::::::  */
@@ -222,6 +246,7 @@ body {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+    /* max-width: 32%;  */
     width: 40%;
     height: 32%;
     background-color: white;
@@ -238,7 +263,7 @@ body {
     gap: 32px;
     width: 84%;
     height: 32%;
-    
+
 
 }
 
@@ -252,7 +277,7 @@ body {
 .dialogBody {
     position: relative;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     text-align: center;
     gap: 24px;
@@ -277,11 +302,14 @@ body {
 .dialogInfo {
     position: relative;
     width: 40%;
+    gap: 8px;
 
 
 }
+
 .dialogInfo p {
     text-align: left;
+    margin-bottom: 4px;
 }
 
 .prev,
@@ -359,16 +387,49 @@ body {
     animation-iteration-count: 2;
 }
 
-/*:::::::::  media query :::::::::*/
-@media screen and (max-width: 768px) {
+/*:::::::::  media query ::::::::: */
+@media screen and (320px >= width) {
+    .dialogHeader h5 {
+        font-size: 1.2rem;
+    }
+    .dialog {
+        width: 90%;
+    }
+}
+
+@media screen and (480px > width) {
+    .dialog {
+        width: 90%;
+    }
+
+    .prev,
+    .next {
+        width: 40%;
+    }
+
+    .prev img,
+    .next img {
+        width: 40%;
+        object-fit: cover;
+    }
+
+    .dialogHeader {
+        gap: 10px;
+        width: 90%;
+    }
+}
+
+@media screen and (620px > width > 480px) {
 
     .logo-container,
     .container {
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        box-shadow: none !important;
-        flex-wrap: wrap;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .logo-container {
+        height: 160px;
     }
 
     nav a {
@@ -378,16 +439,78 @@ body {
         margin-bottom: 12px;
     }
 
-    #pokemon-container {
-        margin-top: 56px;
+    .dialog {
+        width: 90%;
+    }
+
+    .dialogImg {
+        width: 80%;
     }
 }
 
-@media screen and (min-width: 769px) {
-    #pokemon-container {
-        max-width: 1200px;
+@media screen and (720px > width) {
+    .dialogBody {
         width: 100%;
-        margin: 0 auto;
-        margin-top: 56px;
+        display: flex;
+        flex-direction: column !important;
+        align-items: center;
+        justify-content: center;
+
     }
+}
+
+@media screen and (max-width: 964px) {
+    .dialog {
+        
+        height: fit-content;
+        padding: 12px;
+    }
+
+    .dialogBody {
+        width: 100%;
+        display: flex;
+        flex-direction: column !important;
+        align-items: center;
+        justify-content: center;
+
+    }
+
+    .dialogInfo {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 80%;
+    }
+
+    .dialogImg {
+        width: 56%;
+    }
+
+    .dialogHeader h5 {
+        font-size: 1.4rem;
+    }
+
+    .dialogInfo p {
+        text-align: center;
+    }
+}
+
+@media screen and (1024px < width) {
+
+    .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 768px;
+    }
+
+    #pokemon-container {
+        width: 800px;
+    }
+
+    .dialog {
+        width: 400px;
+
+    }
+
 }

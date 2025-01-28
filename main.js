@@ -26,7 +26,6 @@ let colors = {
     normal: '#A8A878',
 };
 
-
 function init() {
 
     const showPokeHideLoader = async () => {
@@ -95,6 +94,11 @@ function getPokeTypes(pokemonData) {
     }).join('  ');
 }
 
+function getPokeTypesBG(pokemonData) {
+    let firstType = pokemonData.types[0].type.name;
+    return `style="background-color: ${getTypeColor(firstType)}"`;
+}
+
 function getTypeColor(type) {
     return colors[type] || '#FFFFFF';
 }
@@ -138,9 +142,7 @@ function showNext(index) {
     } else {
         currentIndex = 0;
         openDialog(currentIndex);
-
     }
-
 }
 
 function closeDialog() {
@@ -172,8 +174,8 @@ function loadMorePokemon() {
 }
 
 function eventHandleSearch() {
-    let searchBar = document.getElementById('searchBar'); 
-    searchBar.addEventListener('input', function () { 
+    let searchBar = document.getElementById('searchBar');
+    searchBar.addEventListener('input', function () {
         let searchTerm = searchBar.value.toLowerCase();
         filterPokemons(searchTerm);
     });
@@ -189,16 +191,17 @@ function filterPokemons(searchTerm) {
         if (filteredPokemons.length === 0) {
             renderNoResults(container);
         } else {
-            displayFilteredPokemon(index, filteredPokemons);
+            displayFilteredPokemon(filteredPokemons);
         }
         document.getElementById('loadMore').classList.add('d-none');
     }
 }
 
-function displayFilteredPokemon(index, filteredPokemons) {
+function displayFilteredPokemon(filteredPokemons) {
+    let container = document.getElementById('pokemon-container');
     for (index = 0; index < filteredPokemons.length; index++) {
         if (index < filteredPokemons.length) {
-            container.innerHTML += renderFilteredPokemonsHTML(index, filteredPokemons);
+            container.innerHTML += renderFilteredPokemonsHTML(filteredPokemons);
         }
     }
 }
